@@ -1,4 +1,6 @@
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
+pathogen#helptags()
 
 " turn off compatibility mode for vi (seriously)
 set nocompatible
