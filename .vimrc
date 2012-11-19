@@ -84,3 +84,7 @@ nnoremap ; :
 " leader mapped to ,
 let mapleader = ","
 
+" MISC
+
+" apparently I need this to make powerline work
+set laststatus=2
