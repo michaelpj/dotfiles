@@ -84,7 +84,13 @@ nnoremap ; :
 " leader mapped to ,
 let mapleader = ","
 
+nmap <Leader>df lbdt(ds)
+nmap <Leader>dsf ds)db
+nmap <Leader>e :e ~/.vimrc<CR>
+nmap <Leader>s :so ~/.vimrc<CR>
+
 " MISC
 
 " apparently I need this to make powerline work
 set laststatus=2
+
