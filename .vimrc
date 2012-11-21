@@ -43,14 +43,14 @@ colorscheme molokai
 
 " MOVEMENT
 " no more arrow keys!
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
 
 " j and k work sensibly with wrapped lines
 nnoremap j gj
@@ -84,10 +84,16 @@ nnoremap ; :
 " leader mapped to ,
 let mapleader = ","
 
+" delete (surrounding) function application
 nmap <Leader>df lbdt(ds)
 nmap <Leader>dsf ds)db
+
+" vimrc editing and sourcing
 nmap <Leader>e :e ~/.vimrc<CR>
 nmap <Leader>s :so ~/.vimrc<CR>
+
+" toggle NERDtree
+nmap <F2> :NERDTreeToggle<CR>
 
 " MISC
 
