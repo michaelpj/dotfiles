@@ -101,5 +101,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+export EDITOR=vim
+export VISUAL=gvim
+
 # PATH additions
 export PATH=$PATH:$HOME/play-2.0.4/

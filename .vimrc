@@ -37,20 +37,23 @@ set backspace=indent,eol,start
 " no swap files
 set noswapfile
 
+" automatically change working directory to location of current file
+set autochdir
+
 " VISUAL
 
 colorscheme molokai
 
 " MOVEMENT
-" no more arrow keys!
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
+ no more arrow keys!
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 " j and k work sensibly with wrapped lines
 nnoremap j gj
