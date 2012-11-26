@@ -36,6 +36,8 @@ set backspace=indent,eol,start
 
 " no swap files
 set noswapfile
+set backup
+set backupdir=~/.vim/backups
 
 " VISUAL
 
