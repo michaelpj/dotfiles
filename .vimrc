@@ -39,12 +39,15 @@ set noswapfile
 set backup
 set backupdir=~/.vim/backups
 
+" automatically change working directory to location of current file
+set autochdir
+
 " VISUAL
 
 colorscheme molokai
 
 " MOVEMENT
-" no more arrow keys!
+ no more arrow keys!
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -85,4 +88,20 @@ nnoremap ; :
 
 " leader mapped to ,
 let mapleader = ","
+
+" delete (surrounding) function application
+nmap <Leader>df lbdt(ds)
+nmap <Leader>dsf ds)db
+
+" vimrc editing and sourcing
+nmap <Leader>e :e ~/.vimrc<CR>
+nmap <Leader>s :so ~/.vimrc<CR>
+
+" toggle NERDtree
+nmap <F2> :NERDTreeToggle<CR>
+
+" MISC
+
+" apparently I need this to make powerline work
+set laststatus=2
 
