@@ -37,7 +37,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-set backupdir=~/.vim/backups
 " enable the mouse
 set mouse=a
 
@@ -120,6 +119,9 @@ nmap <Leader>n :NERDTreeToggle<CR>
 
 " NERDtree directory stuff
 let NERDTreeChDirMode=2
+
+" toggle rainbow parentheses
+nmap <Leader>rp :RainbowParenthesesToggle
 
 " MISC
 
