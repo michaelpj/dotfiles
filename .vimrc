@@ -26,8 +26,20 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set shiftround
+set smarttab
 
 set encoding=utf-8
+
+" nicer split navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+set backupdir=~/.vim/backups
+" enable the mouse
+set mouse=a
 
 " switch buffers without having to save
 set hidden
@@ -38,10 +50,9 @@ set relativenumber
 " sane backspace behaviour
 set backspace=indent,eol,start
 
-" no swap files
+" no swap files or backup
 set noswapfile
-set backup
-set backupdir=~/.vim/backups
+set nobackup
 
 " automatically change working directory to location of current file
 set autochdir
