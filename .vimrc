@@ -5,6 +5,9 @@ call pathogen#helptags()
 
 " BASICS
 
+" leader mapped to ,
+let mapleader = ","
+
 " turn off compatibility mode for vi (seriously)
 set nocompatible
 
@@ -12,7 +15,8 @@ set nocompatible
 syntax on
 
 " enable filetype detection and language-dependent indenting.
-filetype plugin indent on
+"filetype plugin indent on
+filetype on
 
 " apparently this stops some security problems
 set modelines=0
@@ -73,6 +77,9 @@ set incsearch
 " highlight searches
 set hlsearch
 
+" clear search highlighting
+nnoremap <Leader><space> :noh<CR>
+
 " use normal regex syntax
 nnoremap / /\v
 vnoremap / /\v
@@ -81,13 +88,13 @@ vnoremap / /\v
 set ignorecase
 set smartcase
 
+" make tilde (invert case) behave like an operator
+set tildeop
+
 " COMMANDS
 
 " make semicolon work for commands
 nnoremap ; :
-
-" leader mapped to ,
-let mapleader = ","
 
 " delete (surrounding) function application
 nmap <Leader>df lbdt(ds)
@@ -98,7 +105,10 @@ nmap <Leader>e :e ~/.vimrc<CR>
 nmap <Leader>s :so ~/.vimrc<CR>
 
 " toggle NERDtree
-nmap <F2> :NERDTreeToggle<CR>
+nmap <Leader>n :NERDTreeToggle<CR>
+
+" NERDtree directory stuff
+let NERDTreeChDirMode=2
 
 " MISC
 
