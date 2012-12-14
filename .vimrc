@@ -58,18 +58,19 @@ set autochdir
 
 " VISUAL
 
+"set background=dark
 colorscheme molokai
 
 " MOVEMENT
- no more arrow keys!
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" no more arrow keys!
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
 
 " j and k work sensibly with wrapped lines
 nnoremap j gj
@@ -121,7 +122,19 @@ nmap <Leader>n :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
 
 " toggle rainbow parentheses
-nmap <Leader>rp :RainbowParenthesesToggle
+nmap <Leader>rp :RainbowParenthesesToggle<CR>
+
+" toggle relative line numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <Leader>rn :call NumberToggle()<CR>
+
 
 " MISC
 
