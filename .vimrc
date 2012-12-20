@@ -5,6 +5,8 @@ call pathogen#helptags()
 
 " BASICS
 
+" try this for esc
+inoremap jj <Esc> 
 " leader mapped to ,
 let mapleader = ","
 
@@ -58,7 +60,8 @@ set autochdir
 
 " VISUAL
 
-"set background=dark
+set display=lastline
+set background=dark
 colorscheme molokai
 
 " MOVEMENT
@@ -135,6 +138,16 @@ endfunc
 
 nnoremap <Leader>rn :call NumberToggle()<CR>
 
+" PLUGINS
+
+" switch buffers with single clck
+let g:miniBufExplUseSingleClick=1
+
+" use control + vim navigation key to move windows
+let g:miniBufExplMapWindowNavVim=1
+
+" use <C-TAB> and <C-S-TAB> to cycle forward and backwards through buffers
+let g:miniBufExplMapCTabSwitchBufs=1
 
 " MISC
 
