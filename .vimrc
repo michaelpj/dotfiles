@@ -17,8 +17,11 @@ set nocompatible
 syntax on
 
 " enable filetype detection and language-dependent indenting.
-"filetype plugin indent on
 filetype on
+
+"filetype plugin indent on
+filetype plugin on
+filetype indent on
 
 " apparently this stops some security problems
 set modelines=0
