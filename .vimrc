@@ -23,6 +23,9 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" force syntax highlighting to sync from start of file
+syntax sync fromstart
+
 " apparently this stops some security problems
 set modelines=0
 
@@ -63,8 +66,12 @@ set autochdir
 
 " VISUAL
 
+" set font
+set guifont=DejaVu\ Sans\ Mono:h10
+
 set display=lastline
 set background=dark
+" colorscheme solarized
 colorscheme molokai
 
 " MOVEMENT
@@ -151,6 +158,12 @@ let g:miniBufExplMapWindowNavVim=1
 
 " use <C-TAB> and <C-S-TAB> to cycle forward and backwards through buffers
 let g:miniBufExplMapCTabSwitchBufs=1
+
+" highlight basic types in Haskell
+let g:hs_highlight_types=1
+
+" highlight booleans in Haskell
+let g:hs_highlight_boolean=1
 
 " MISC
 
