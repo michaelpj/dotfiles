@@ -67,7 +67,13 @@ set autochdir
 " VISUAL
 
 " set font
-set guifont=DejaVu\ Sans\ Mono:h10
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=DejaVu\ Sans\ Mono\ 11
+  elseif has("gui_win32")
+    set guifont=DejaVu\ Sans\ Mono:h10:cANSI
+  endif
+endif
 
 set display=lastline
 set background=dark
@@ -165,8 +171,5 @@ let g:hs_highlight_types=1
 " highlight booleans in Haskell
 let g:hs_highlight_boolean=1
 
-" MISC
-
-" apparently I need this to make powerline work
 set laststatus=2
 
