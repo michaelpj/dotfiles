@@ -17,11 +17,7 @@ set nocompatible
 syntax on
 
 " enable filetype detection and language-dependent indenting.
-filetype on
-
-"filetype plugin indent on
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " force syntax highlighting to sync from start of file
 syntax sync fromstart
