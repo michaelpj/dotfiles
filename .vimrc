@@ -136,6 +136,9 @@ nmap <Leader>n :NERDTreeToggle<CR>
 " NERDtree directory stuff
 let NERDTreeChDirMode=2
 
+" toggle tagbar
+nnoremap <silent> <F9> :TagbarToggle<CR>
+
 " toggle rainbow parentheses
 nmap <Leader>rp :RainbowParenthesesToggle<CR>
 
@@ -150,6 +153,19 @@ endfunc
 
 nnoremap <Leader>rn :call NumberToggle()<CR>
 
+" better copying and pasting to/from external sources
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+
+nnoremap <leader>Y "+Y
+vnoremap <leader>Y "+Y
+
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
+
 " PLUGINS
 
 " switch buffers with single clck
@@ -161,11 +177,37 @@ let g:miniBufExplMapWindowNavVim=1
 " use <C-TAB> and <C-S-TAB> to cycle forward and backwards through buffers
 let g:miniBufExplMapCTabSwitchBufs=1
 
+" don't let MBE open buffers in NERDTree etc
+let g:miniBufExplModSelTarget = 1
+
 " highlight basic types in Haskell
 let g:hs_highlight_types=1
 
 " highlight booleans in Haskell
 let g:hs_highlight_boolean=1
 
+" apparently I need this to get powerline to work
 set laststatus=2
 
+" turn off parentheses crosshairs for now
+let g:loaded_paren_crosshairs = 1
+
+let g:tagbar_type_scala = {
+    \ 'ctagstype' : 'Scala',
+    \ 'kinds'     : [
+        \ 'p:packages:1',
+        \ 'V:values',
+        \ 'v:variables',
+        \ 'T:types',
+        \ 't:traits',
+        \ 'o:objects',
+        \ 'a:aclasses',
+        \ 'c:classes',
+        \ 'r:cclasses',
+        \ 'm:methods'
+    \ ]
+\ }
+
+" MISC
+
+set tags=./tags;/
