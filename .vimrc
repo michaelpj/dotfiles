@@ -19,6 +19,9 @@ syntax on
 " enable filetype detection and language-dependent indenting.
 filetype plugin indent on
 
+" autoindent, usually useful!
+set autoindent
+
 " force syntax highlighting to sync from start of file
 syntax sync fromstart
 
