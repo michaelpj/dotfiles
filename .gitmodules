@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/vim-paren-crosshairs"]
 	path = .vim/bundle/vim-paren-crosshairs
 	url = https://github.com/chreekat/vim-paren-crosshairs.git
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
