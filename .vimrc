@@ -65,6 +65,7 @@ set autochdir
 
 " fold based on syntax, if we have it
 set foldmethod=syntax
+set foldnestmax=1
 
 " VISUAL
 
