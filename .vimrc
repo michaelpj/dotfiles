@@ -63,14 +63,17 @@ set nobackup
 " automatically change working directory to location of current file
 set autochdir
 
+" fold based on syntax, if we have it
+set foldmethod=syntax
+
 " VISUAL
 
 " set font
 if has("gui_running")
   if has("gui_gtk2")
-    set guifont=DejaVu\ Sans\ Mono\ 11
+    set guifont=DejaVu\ Sans\ Mono\ 12
   elseif has("gui_win32")
-    set guifont=DejaVu\ Sans\ Mono:h10:cANSI
+    set guifont=DejaVu\ Sans\ Mono:h11:cANSI
   endif
 endif
 
