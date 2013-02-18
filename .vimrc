@@ -17,7 +17,8 @@ set nocompatible
 syntax on
 
 " enable filetype detection and language-dependent indenting.
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 
 " autoindent, usually useful!
 set autoindent
