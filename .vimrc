@@ -176,6 +176,14 @@ vnoremap <leader>P "+P
 
 " PLUGINS
 
+" fugitive
+nmap <Leader>gs :Gstatus<CR>
+
+" CtrlP
+" binding for ctrlp buffer search
+nmap <Leader>b :CtrlPBuffer<CR>
+
+" Minibufexpl
 " switch buffers with single clck
 let g:miniBufExplUseSingleClick=1
 

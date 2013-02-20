@@ -109,3 +109,5 @@ export VISUAL=gvim
 
 # PATH additions
 export PATH=$PATH:$HOME/play-2.0.4/
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

@@ -43,3 +43,12 @@
 [submodule ".vim/bundle/vim-multicursor"]
 	path = .vim/bundle/vim-multicursor
 	url = https://github.com/paradigm/vim-multicursor.git
+[submodule ".vim/bundle/ctrlp"]
+	path = .vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/vim-markdown"]
+	path = .vim/bundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
