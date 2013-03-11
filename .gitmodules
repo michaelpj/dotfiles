@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule ".zprezto"]
+	path = .zprezto
+	url = https://github.com/michaelpj/prezto.git
