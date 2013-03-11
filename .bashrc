@@ -102,7 +102,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # set vi editing mode
-#set -o vi
+set -o vi
 
 export EDITOR=vim
 export VISUAL=gvim
