@@ -68,6 +68,9 @@ set autochdir
 set foldmethod=syntax
 set foldnestmax=1
 
+" don't show the toolbar
+set guioptions-=T
+
 " VISUAL
 
 " set font
@@ -205,9 +208,6 @@ let g:hs_highlight_boolean=1
 " apparently I need this to get powerline to work
 set laststatus=2
 
-" turn off parentheses crosshairs for now
-let g:loaded_paren_crosshairs = 1
-
 let g:tagbar_type_scala = {
     \ 'ctagstype' : 'Scala',
     \ 'kinds'     : [
@@ -226,4 +226,5 @@ let g:tagbar_type_scala = {
 
 " MISC
 
+" ctags locations
 set tags=./tags;/
