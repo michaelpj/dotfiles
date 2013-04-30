@@ -228,3 +228,5 @@ let g:tagbar_type_scala = {
 
 " ctags locations
 set tags=./tags;/
+
+let g:gitgutter_enabled = 0
