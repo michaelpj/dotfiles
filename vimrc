@@ -84,7 +84,6 @@ endif
 
 set display=lastline
 set t_Co=256
-let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 " colorscheme solarized
 colorscheme molokai
 

@@ -35,6 +35,3 @@
 [submodule ".zprezto"]
 	path = .zprezto
 	url = https://github.com/michaelpj/prezto.git
-[submodule ".vim/bundle/csapprox"]
-	path = .vim/bundle/csapprox
-	url = https://github.com/vim-scripts/CSApprox
