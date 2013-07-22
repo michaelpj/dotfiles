@@ -100,10 +100,10 @@ fi
 # set vi editing mode
 set -o vi
 
-export TERM="gnome-256color"
+# damn it tmux
+alias tmux='tmux -2'
 
 export EDITOR=vim
 export VISUAL=gvim
 
 # PATH additions
-export TERM="xterm-256color"

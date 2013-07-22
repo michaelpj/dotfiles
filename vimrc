@@ -83,9 +83,17 @@ if has("gui_running")
 endif
 
 set display=lastline
-set background=dark
+set t_Co=256
+let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 " colorscheme solarized
 colorscheme molokai
+
+if &term =~ '256color'
+  " Disable Background Color Erase (BCE) so that color schemes
+  " work properly when Vim is used inside tmux and GNU screen.
+  " See also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
 
 " MOVEMENT
 " no more arrow keys!
