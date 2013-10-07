@@ -140,6 +140,10 @@ set tildeop
 " make semicolon work for commands
 nnoremap ; :
 
+" insert new lines without leaving normal mode
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
+
 " delete (surrounding) function application
 nmap <Leader>df lbdt(ds)
 nmap <Leader>dsf ds)db
