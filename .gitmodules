@@ -35,3 +35,6 @@
 [submodule ".zprezto"]
 	path = .zprezto
 	url = https://github.com/michaelpj/prezto.git
+[submodule "shell/fasd"]
+	path = shell/fasd
+	url = https://github.com/clvv/fasd
