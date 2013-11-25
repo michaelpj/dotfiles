@@ -23,6 +23,7 @@
   amend = commit --amend
   pr-prep = !"git fetch upstream && { echo 'Attempting to merge'; git merge upstream/master || { echo 'Merge had conflicts, rebasing'; git merge --abort; git rebase upstream/master; } }"
   pr-make = !"hub pull-request -b Semmle:master"
-  branch-purge = !"git branch --merged | grep -v 'master' | grep -v '*' | xargs git branch -d"
+  branch-purge = !"git branch --merged | grep -v 'master' | grep -v '*' | parallel --gnu git del-lr {}"
+  del-lr = !"f() { git branch -d $1 && git push origin --delete $1; }; f"
 [push]
 	default = simple
