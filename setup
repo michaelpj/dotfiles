@@ -20,3 +20,6 @@ do
   echo $file
   ln -s -f $HOME/dotfiles/$file $HOME/.$file
 done
+
+# Do vim bundle install
+vim +BundleInstall +qall
