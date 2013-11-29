@@ -1,7 +1,24 @@
 " PATHOGEN
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+"runtime bundle/vim-pathogen/autoload/pathogen.vim
+"call pathogen#infect()
+"call pathogen#helptags()
+
+" VUNDLE
+filetype off 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'ervandew/supertab'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp'
 
 " BASICS
 
@@ -30,6 +47,10 @@ syntax on
 " enable filetype detection and language-dependent indenting.
 filetype plugin on
 filetype indent on
+
+" completion
+set omnifunc=syntaxcomplete#Complete
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " autoindent, usually useful!
 set autoindent
