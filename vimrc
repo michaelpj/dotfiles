@@ -1,24 +1,63 @@
-" PATHOGEN
-"runtime bundle/vim-pathogen/autoload/pathogen.vim
-"call pathogen#infect()
-"call pathogen#helptags()
-
 " VUNDLE
 filetype off 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+
+" PLUGINS
+
 Bundle 'scrooloose/nerdtree'
+" toggle NERDtree
+nmap <Leader>n :NERDTreeToggle<CR>
+
+" NERDtree directory stuff
+let NERDTreeChDirMode=2
+
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
+
 Bundle 'tpope/vim-fugitive'
+nmap <Leader>gs :Gstatus<CR>
+
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+
 Bundle 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
 Bundle 'plasticboy/vim-markdown'
+
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/ctrlp'
+" apparently I need this to get powerline to work
+set laststatus=2
+
+Bundle 'kien/ctrlp.vim'
+" binding for ctrlp buffer search
+nmap <Leader>b :CtrlPBuffer<CR>
+
+"Bundle 'majutsushi/tagbar'
+"let g:tagbar_type_scala = {
+    "\ 'ctagstype' : 'Scala',
+    "\ 'kinds'     : [
+        "\ 'p:packages:1',
+        "\ 'V:values',
+        "\ 'v:variables',
+        "\ 'T:types',
+        "\ 't:traits',
+        "\ 'o:objects',
+        "\ 'a:aclasses',
+        "\ 'c:classes',
+        "\ 'r:cclasses',
+        "\ 'm:methods'
+    "\ ]
+"\ }
+
+" highlight basic types in Haskell
+let g:hs_highlight_types=1
+
+" highlight booleans in Haskell
+let g:hs_highlight_boolean=1
 
 " BASICS
 
@@ -44,19 +83,18 @@ set nocompatible
 " syntax highlighting on
 syntax on
 
+" force syntax highlighting to sync from start of file
+syntax sync fromstart
+
 " enable filetype detection and language-dependent indenting.
 filetype plugin on
 filetype indent on
 
 " completion
 set omnifunc=syntaxcomplete#Complete
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " autoindent, usually useful!
 set autoindent
-
-" force syntax highlighting to sync from start of file
-syntax sync fromstart
 
 " apparently this stops some security problems
 set modelines=0
@@ -103,6 +141,9 @@ set foldnestmax=1
 " don't show the toolbar
 set guioptions-=T
 
+" make tilde (invert case) behave like an operator
+set tildeop
+
 " VISUAL
 
 " set font
@@ -128,14 +169,14 @@ endif
 
 " MOVEMENT
 " no more arrow keys!
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 " j and k work sensibly with wrapped lines
 nnoremap j gj
@@ -164,8 +205,6 @@ vnoremap / /\v
 set ignorecase
 set smartcase
 
-" make tilde (invert case) behave like an operator
-set tildeop
 
 " COMMANDS
 
@@ -183,18 +222,6 @@ nmap <Leader>dsf ds)db
 " vimrc editing and sourcing
 nmap <Leader>e :e ~/.vimrc<CR>
 nmap <Leader>s :so ~/.vimrc<CR>
-
-" toggle NERDtree
-nmap <Leader>n :NERDTreeToggle<CR>
-
-" NERDtree directory stuff
-let NERDTreeChDirMode=2
-
-" toggle tagbar
-nnoremap <silent> <F9> :TagbarToggle<CR>
-
-" toggle rainbow parentheses
-nmap <Leader>rp :RainbowParenthesesToggle<CR>
 
 " toggle relative line numbers
 function! NumberToggle()
@@ -220,56 +247,7 @@ vnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
 
-" PLUGINS
-
-" fugitive
-nmap <Leader>gs :Gstatus<CR>
-
-" CtrlP
-" binding for ctrlp buffer search
-nmap <Leader>b :CtrlPBuffer<CR>
-
-" Minibufexpl
-" switch buffers with single clck
-let g:miniBufExplUseSingleClick=1
-
-" use control + vim navigation key to move windows
-let g:miniBufExplMapWindowNavVim=1
-
-" use <C-TAB> and <C-S-TAB> to cycle forward and backwards through buffers
-let g:miniBufExplMapCTabSwitchBufs=1
-
-" don't let MBE open buffers in NERDTree etc
-let g:miniBufExplModSelTarget = 1
-
-" highlight basic types in Haskell
-let g:hs_highlight_types=1
-
-" highlight booleans in Haskell
-let g:hs_highlight_boolean=1
-
-" apparently I need this to get powerline to work
-set laststatus=2
-
-let g:tagbar_type_scala = {
-    \ 'ctagstype' : 'Scala',
-    \ 'kinds'     : [
-        \ 'p:packages:1',
-        \ 'V:values',
-        \ 'v:variables',
-        \ 'T:types',
-        \ 't:traits',
-        \ 'o:objects',
-        \ 'a:aclasses',
-        \ 'c:classes',
-        \ 'r:cclasses',
-        \ 'm:methods'
-    \ ]
-\ }
-
 " MISC
 
 " ctags locations
 set tags=./tags;/
-
-let g:gitgutter_enabled = 0
