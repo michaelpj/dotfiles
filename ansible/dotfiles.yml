@@ -1,0 +1,14 @@
+---
+- name: symlink dotfiles
+  file:
+    dest: "{{home}}/.{{item|basename}}"
+    src: "{{item}}"
+    state: link
+  with_fileglob: ../dotfiles/*
+
+- name: symlink zsh dotfiles from zprezto
+  file:
+    dest: "{{home}}/.{{item|basename}}"
+    src: "{{item}}"
+    state: link
+  with_fileglob: ../.zprezto/runcoms/z*

@@ -1,0 +1,4 @@
+---
+dotfiles_root: ../
+local_user: "{{ lookup('env', 'USER') }}"
+home: "{{ lookup('env','HOME') }}"

@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  
+  vars_files:
+    - vars.yml
+  tasks:
+    - include: deps.yml
+    - include: dotfiles.yml
