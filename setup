@@ -1,25 +1,2 @@
-#! /bin/bash
-# Setup for dotfiles
-
-# Make sure all the submodules are there!
-git submodule update --init --recursive
-
-# Link the zprezto folder into home
-ln -s -T -f $HOME/dotfiles/.zprezto $HOME/.zprezto
-
-# Run the prezto setup script
-source .zprezto/setup
-
-# Link the .vim directory into home
-ln -s -T -f $HOME/dotfiles/.vim $HOME/.vim
-
-# Link all dotfiles in this directory into home directory
-DOTFILES=`ls -p | egrep -v ".*[/]$|setup"`
-for file in $DOTFILES
-do
-  echo $file
-  ln -s -f $HOME/dotfiles/$file $HOME/.$file
-done
-
-# Do vim bundle install
-vim +BundleInstall +qall
+#! /bin/sh
+ansible-playbook ansible/setup.yml -i ansible/hosts -K

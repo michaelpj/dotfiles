@@ -4,6 +4,38 @@
   
   vars_files:
     - vars.yml
+
   tasks:
-    - include: deps.yml
-    - include: dotfiles.yml
+    - name: install system deps
+      sudo: yes
+      apt: 
+        pkg: "{{item}}"
+        state: latest
+        update_cache: yes
+        cache_valid_time: 36000
+      with_items: packages
+
+    - name: setup submodules
+      shell: git submodule update --init --recursive chdir={{dotfiles_root}}
+
+    - name: symlink .vim into home
+      file:
+        dest: "{{home}}/.vim"
+        src: "{{dotfiles_root}}/.vim"
+
+    - name: symlink dotfiles
+      file:
+        dest: "{{home}}/.{{item|basename}}"
+        src: "{{item}}"
+        state: link
+      with_fileglob: ../dotfiles/*
+
+    - name: symlink zsh dotfiles from zprezto
+      file:
+        dest: "{{home}}/.{{item|basename}}"
+        src: "{{item}}"
+        state: link
+      with_fileglob: ../.zprezto/runcoms/z*
+
+    - name: run vundle
+      shell: vim +BundleInstall +qall

@@ -1,4 +1,13 @@
 ---
-dotfiles_root: ../
+dotfiles_root: "{{ inventory_dir }}/.."
 local_user: "{{ lookup('env', 'USER') }}"
 home: "{{ lookup('env','HOME') }}"
+packages:
+  - git
+  - python
+  - python-virtualenv
+  - ansible
+  - scala
+  - emacs
+  - vim
+

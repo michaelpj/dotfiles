@@ -1,4 +1,0 @@
----
-- name: run vundle
-  shell: vim +BundleInstall +qall
-
