@@ -16,26 +16,29 @@
       with_items: packages
 
     - name: setup submodules
-      shell: git submodule update --init --recursive chdir={{dotfiles_root}}
+      shell: git submodule update --init --recursive
 
     - name: symlink .vim into home
       file:
         dest: "{{home}}/.vim"
-        src: "{{dotfiles_root}}/.vim"
+        src: "{{inventory_dir}}/.vim"
+        state: link
+        force: yes
 
     - name: symlink dotfiles
       file:
         dest: "{{home}}/.{{item|basename}}"
         src: "{{item}}"
         state: link
-      with_fileglob: ../dotfiles/*
+      with_fileglob: dotfiles/*
 
     - name: symlink zsh dotfiles from zprezto
       file:
         dest: "{{home}}/.{{item|basename}}"
         src: "{{item}}"
         state: link
-      with_fileglob: ../.zprezto/runcoms/z*
+        force: yes
+      with_fileglob: .zprezto/runcoms/z*
 
     - name: run vundle
       shell: vim +BundleInstall +qall

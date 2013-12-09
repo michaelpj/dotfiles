@@ -1,2 +1,2 @@
 #! /bin/sh
-ansible-playbook ansible/setup.yml -i ansible/hosts -K
+ansible-playbook setup.yml -i hosts -K

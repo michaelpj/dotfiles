@@ -1,5 +1,4 @@
 ---
-dotfiles_root: "{{ inventory_dir }}/.."
 local_user: "{{ lookup('env', 'USER') }}"
 home: "{{ lookup('env','HOME') }}"
 packages:
@@ -10,7 +9,9 @@ packages:
   - scala
   - emacs
   - vim
+  - vim-gtk
   - zsh
   - parallel
   - build-essential
-
+  - guake
+  - tmux
