@@ -10,4 +10,7 @@ packages:
   - scala
   - emacs
   - vim
+  - zsh
+  - parallel
+  - build-essential
 
