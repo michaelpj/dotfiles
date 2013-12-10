@@ -93,9 +93,6 @@ filetype indent on
 " completion
 set omnifunc=syntaxcomplete#Complete
 
-" autoindent, usually useful!
-set autoindent
-
 " apparently this stops some security problems
 set modelines=0
 
