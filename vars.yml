@@ -15,3 +15,7 @@ packages:
   - build-essential
   - guake
   - tmux
+repos:
+  - { repo: "https://github.com/paulp/sbt-extras.git", dest: "sbt-extras" }
+  - { repo: "https://github.com/milessabin/shapeless.git", dest: "shapeless" }
+  - { repo: "https://github.com/scalaz/scalaz.git", dest: "scalaz" }

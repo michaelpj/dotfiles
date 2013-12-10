@@ -18,34 +18,7 @@
     - name: setup submodules
       shell: git submodule update --init --recursive
 
-    - name: symlink .vim into home
-      file:
-        dest: "{{home}}/.vim"
-        src: "{{inventory_dir}}/.vim"
-        state: link
-        force: yes
-
-    - name: symlink dotfiles
-      file:
-        dest: "{{home}}/.{{item|basename}}"
-        src: "{{item}}"
-        state: link
-      with_fileglob: dotfiles/*
-
-    - name: symlink zsh dotfiles from zprezto
-      file:
-        dest: "{{home}}/.{{item|basename}}"
-        src: "{{item}}"
-        state: link
-        force: yes
-      with_fileglob: .zprezto/runcoms/z*
-
-    - name: symlink .zprezto directory
-      file:
-        dest: "{{home}}/.zprezto"
-        src: "{{inventory_dir}}/.zprezto"
-        state: link
-        force: yes
+    - include: links.yml
         
     - name: run vundle
       shell: vim +BundleInstall +qall
@@ -59,7 +32,4 @@
       git:
         repo: "{{item.repo}}"
         dest: "{{home}}/repos/{{item.dest}}"
-      with_items: 
-        - { repo: "https://github.com/paulp/sbt-extras.git", dest: "sbt-extras" }
-        - { repo: "https://github.com/milessabin/shapeless.git", dest: "shapeless" }
-        - { repo: "https://github.com/scalaz/scalaz.git", dest: "scalaz" }
+      with_items: repos
