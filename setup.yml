@@ -40,5 +40,12 @@
         force: yes
       with_fileglob: .zprezto/runcoms/z*
 
+    - name: symlink .zprezto directory
+      file:
+        dest: "{{home}}/.zprezto"
+        src: "{{inventory_dir}}/.zprezto"
+        state: link
+        force: yes
+        
     - name: run vundle
       shell: vim +BundleInstall +qall
