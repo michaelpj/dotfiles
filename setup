@@ -1,3 +1,2 @@
 #! /bin/sh
 ansible-playbook setup.yml -i hosts -K
-chsh -s /bin/zsh
