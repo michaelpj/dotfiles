@@ -1,10 +1,14 @@
+;; Basic alterations
+;; enable mouse
+(xterm-mouse-mode)
+
+;; Packages
 (setq mpj-packages '(undo-tree evil scala-mode2 molokai-theme ensime))
 
 (require 'package)
-(package-initialize)
-(add-to-list 'package-archives '("gnu" . "https://oss.sonatype.org/content/repositories"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(package-initialize)
 
 (when (not package-archive-contents) (package-refresh-contents))
 
@@ -15,8 +19,21 @@
 
 (require 'evil)
 (evil-mode 1)
+;; change mode-line color by evil state
+(setq default-modeline-colour "black")
+(add-hook 'post-command-hook
+  (lambda ()
+    (set-face-background 'mode-line (cond ((minibufferp) default-modeline-colour)
+                    ((evil-insert-state-p) "DeepSkyBlue3")
+                    ((evil-emacs-state-p)  "purple1")
+                    ((evil-visual-state-p)  "DarkOrange1")
+                    (t default-modeline-colour)))))
 
 (require 'molokai-theme)
+
+;; auctex
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
 
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
