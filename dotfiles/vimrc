@@ -80,6 +80,9 @@ let mapleader = ","
 " turn off compatibility mode for vi (seriously)
 set nocompatible
 
+" show line numbers
+set number
+
 " syntax highlighting on
 syntax on
 
@@ -118,9 +121,6 @@ set mouse=a
 " switch buffers without having to save
 set hidden
 
-" display relative line numbers
-set relativenumber
-
 " sane backspace behaviour
 set backspace=indent,eol,start
 
@@ -134,6 +134,7 @@ set autochdir
 " fold based on syntax, if we have it
 set foldmethod=syntax
 set foldnestmax=1
+set foldlevel=20
 
 " don't show the toolbar
 set guioptions-=T
