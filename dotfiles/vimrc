@@ -1,42 +1,43 @@
 " VUNDLE
 filetype off 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " PLUGINS
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " toggle NERDtree
 nmap <Leader>n :NERDTreeToggle<CR>
 
 " NERDtree directory stuff
 let NERDTreeChDirMode=2
 
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+let g:syntastic_mode_map = { 'passive_filetypes':['java'] }
 
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 nmap <Leader>gs :Gstatus<CR>
 
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 
-Bundle 'ervandew/supertab'
+Plugin 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
-Bundle 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 
-Bundle 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-powerline'
 " apparently I need this to get powerline to work
 set laststatus=2
 
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " binding for ctrlp buffer search
 nmap <Leader>b :CtrlPBuffer<CR>
 
-"Bundle 'majutsushi/tagbar'
+"Plugin 'majutsushi/tagbar'
 "let g:tagbar_type_scala = {
     "\ 'ctagstype' : 'Scala',
     "\ 'kinds'     : [
@@ -59,6 +60,14 @@ let g:hs_highlight_types=1
 " highlight booleans in Haskell
 let g:hs_highlight_boolean=1
 
+Plugin 'vimwiki'
+
+let g:vimwiki_list=[{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md' }]
+
+" Zeal
+
+nnoremap gz :execute "!zeal --query " . &ft . ":" . expand("<cword>") <CR><CR>
+
 " BASICS
 
 " try this for esc
@@ -75,7 +84,7 @@ if ! has('gui_running')
 endif
 
 " leader mapped to ,
-let mapleader = ","
+"let mapleader = ","
 
 " turn off compatibility mode for vi (seriously)
 set nocompatible
@@ -207,11 +216,11 @@ set smartcase
 " COMMANDS
 
 " make semicolon work for commands
-nnoremap ; :
+"nnoremap ; :
 
 " insert new lines without leaving normal mode
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
+"nmap <S-Enter> O<Esc>
+"nmap <CR> o<Esc>
 
 " delete (surrounding) function application
 nmap <Leader>df lbdt(ds)
@@ -247,5 +256,6 @@ vnoremap <leader>P "+P
 
 " MISC
 
-" ctags locations
+" ctags locations - look all the way up the tree
 set tags=./tags;/
+nnoremap <C-]> g<C-]>
