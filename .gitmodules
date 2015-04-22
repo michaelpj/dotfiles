@@ -4,6 +4,3 @@
 [submodule "shell/fasd"]
 	path = shell/fasd
 	url = https://github.com/clvv/fasd
-[submodule ".vim/bundle/vundle"]
-	path = .vim/bundle/vundle
-	url = https://github.com/gmarik/vundle.git
