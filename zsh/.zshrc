@@ -7,10 +7,13 @@
 
 autoload -U colors && colors
 
+fpath=("${ZDOTDIR:-$HOME}/zfunctions" $fpath)
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
 set -o vi
 
 setopt CLOBBER
