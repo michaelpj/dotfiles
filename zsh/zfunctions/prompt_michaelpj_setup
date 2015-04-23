@@ -47,7 +47,7 @@ function prompt_michaelpj_setup {
 
   # Define prompts.
   PROMPT='%F{magenta}%n%f@%F{yellow}%m%f:%B%F{green}%~%f%B%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT='${git_info:+${(e)git_info[main]}} | ${git_info[states]}'
+  RPROMPT='${git_info:+${(e)git_info[main]} | }${git_info[states]}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
