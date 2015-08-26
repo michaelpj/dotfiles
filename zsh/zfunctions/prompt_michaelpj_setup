@@ -2,19 +2,21 @@
 pmodload 'helper'
 
 function prompt_michaelpj_git_info {
-  # Append Git status.
-  if [[ -s "$_prompt_michaelpj_precmd_async_data" ]]; then
-    alias typeset='typeset -g'
-    source "$_prompt_michaelpj_precmd_async_data"
-    RPROMPT+='${git_info:+${(e)git_info[main]} | }${git_info[states]}'
-    unalias typeset
+  if (( _prompt_michaelpj_precmd_async_pid > 0 )); then 
+    # Append Git status.
+    if [[ -s "$_prompt_michaelpj_precmd_async_data" ]]; then
+      alias typeset='typeset -g'
+      source "$_prompt_michaelpj_precmd_async_data"
+      RPROMPT+='${git_info:+${(e)git_info[main]} | }${git_info[states]}'
+      unalias typeset
+    fi
+
+    # Reset PID.
+    _prompt_michaelpj_precmd_async_pid=0
+
+    # Redisplay prompt.
+    zle && zle reset-prompt
   fi
-
-  # Reset PID.
-  _prompt_michaelpj_precmd_async_pid=0
-
-  # Redisplay prompt.
-  zle && zle reset-prompt
 }
 
 function prompt_michaelpj_precmd_async {
@@ -25,7 +27,7 @@ function prompt_michaelpj_precmd_async {
   fi
 
   # Signal completion to parent process.
-  kill -USR1 $$
+  kill -WINCH $$
 }
 
 function prompt_michaelpj_precmd {
@@ -36,11 +38,11 @@ function prompt_michaelpj_precmd {
 
   # Kill the old process of slow commands if it is still running.
   if (( _prompt_michaelpj_precmd_async_pid > 0 )); then
-    kill -TERM "$_prompt_michaelpj_precmd_async_pid" &>/dev/null
+    kill -KILL "$_prompt_michaelpj_precmd_async_pid" &>/dev/null
   fi
 
   # Compute slow commands in the background.
-  trap prompt_michaelpj_git_info USR1
+  trap prompt_michaelpj_git_info WINCH
   prompt_michaelpj_precmd_async &!
   _prompt_michaelpj_precmd_async_pid=$!
 }
