@@ -34,7 +34,7 @@ function prompt_michaelpj_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
-  RPROMPT=''
+  RPROMPT='${IN_NIX_SHELL:+"%B%F{6}NIX%f%b "}%f'
 
   # Kill the old process of slow commands if it is still running.
   if (( _prompt_michaelpj_precmd_async_pid > 0 )); then
@@ -85,7 +85,6 @@ function prompt_michaelpj_setup {
 
   # Define prompts.
   PROMPT='%F{magenta}%n%f@%F{yellow}%m%f:%B%F{green}%~%f%B%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT=''
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
