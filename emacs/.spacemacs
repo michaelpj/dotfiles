@@ -11,9 +11,16 @@
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load. If it is the symbol `all' instead
  ;; of a list then all discovered layers will be installed.
- dotspacemacs-configuration-layers '(scala
-                                     auctex
+ dotspacemacs-configuration-layers '(latex
+                                     scala
                                      markdown
+                                     haskell
+                                     auto-completion
+                                     syntax-checking
+                                     git
+                                     version-control
+                                     extra-langs
+                                     emacs-lisp
                                      )
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '()
@@ -42,11 +49,12 @@
                        zenburn)
  ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
  ;; size to make separators look not too crappy.
- dotspacemacs-default-font '("Deja Vu Sans Mono"
+ dotspacemacs-default-font '("DejaVu Sans Mono"
                              :size 15
                              :weight normal
                              :width normal
                              :powerline-scale 1.1)
+
  ;; The leader key
  dotspacemacs-leader-key "SPC"
  ;; Major mode leader key is a shortcut key which is the equivalent of
@@ -91,7 +99,7 @@
  ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
  dotspacemacs-smartparens-strict-mode nil
  ;; If non nil advises quit functions to keep server open when quitting.
- dotspacemacs-persistent-server nil
+ dotspacemacs-persistent-server t
  ;; The default package repository used if no explicit repository has been
  ;; specified with an installed package.
  ;; Not used for now.
@@ -109,6 +117,7 @@
 (defun dotspacemacs/config ()
   "This is were you can ultimately override default Spacemacs configuration.
 This function is called at the very end of Spacemacs initialization."
+  (setq powerline-default-separator nil)
 )
 
 ;; Custom variables
