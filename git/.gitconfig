@@ -6,7 +6,7 @@
 [color]
 	ui = true
 [core]
-	editor = /usr/bin/vim
+	editor = vim
 [alias]
   nb = checkout -b
   nbu = !"f() { git checkout -b $1 && git push -u origin $1; }; f"
