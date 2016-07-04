@@ -24,9 +24,6 @@ nmap <Leader>gs :Gstatus<CR>
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 
-Plugin 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-
 Plugin 'plasticboy/vim-markdown'
 
 Plugin 'Lokaltog/vim-powerline'

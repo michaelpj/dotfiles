@@ -15,15 +15,17 @@
                                      scala
                                      markdown
                                      haskell
+                                     python
                                      auto-completion
                                      syntax-checking
+                                     spell-checking 
                                      git
                                      version-control
                                      extra-langs
                                      emacs-lisp
                                      )
  ;; A list of packages and/or extensions that will not be install and loaded.
- dotspacemacs-excluded-packages '()
+ dotspacemacs-excluded-packages '(evil-terminal-cursor-changer)
  ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
  ;; are declared in a layer which is not a member of
  ;; the list `dotspacemacs-configuration-layers'
