@@ -11,6 +11,7 @@
   nb = checkout -b
   nbu = !"f() { git checkout -b $1 && git push -u origin $1; }; f"
   co = checkout
+  ca = !"f() { git checkout $1 && git submodule update --init --recursive; }; f"
   cm = commit -m
   ci = commit -v
   b = branch -a
@@ -25,8 +26,11 @@
   branch-by-date = for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' 
   fix = !"f() { git commit --fixup=${1:-HEAD}; }; f"
   tidy = rebase --autosquash -i
-  sb = !"git checkout $(git branch | cut -c 3- | selecta)"
-  where-merged = !"bash -c 'f() {  git rev-list $0..HEAD --ancestry-path | grep -f <(git rev-list $0..HEAD --first-parent) | tail -1; }; f'"
+  sb = !"git ca $(git branch | cut -c 3- | selecta)"
+  #where-merged = !"bash -c 'f() {  git rev-list $0..HEAD --ancestry-path | grep -f <(git rev-list $0..HEAD --first-parent) | tail -1; }; f'"
   conflicts = diff --name-only --diff-filter=U
+  rebase-onto = !"f() { git rebase --onto $1 $(git merge-base HEAD $1); }; f"
 [push]
 	default = simple
+[rerere]
+	enabled = true

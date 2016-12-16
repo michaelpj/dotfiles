@@ -1,0 +1,4 @@
+.zcompdump*
+.zhistory
+.zshrc.local
+.zcompcache
