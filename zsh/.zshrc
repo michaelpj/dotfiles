@@ -3,7 +3,6 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 
 autoload -U colors && colors
 
@@ -20,6 +19,7 @@ setopt CLOBBER
 
 alias tmux='tmux -2'
 alias em='emacsclient -nw --alternate-editor=""'
+alias emw='emacsclient --alternate-editor=""'
 
 # Report time for commands longer than 20s
 REPORTTIME=20
