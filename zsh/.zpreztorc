@@ -47,7 +47,7 @@ zstyle ':prezto:load' pmodule \
 zstyle ':prezto:module:editor' keymap 'vi'
 
 # Auto convert .... to ../..
-zstyle ':prezto:module:editor' dot-expansion 'yes'
+#zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 #
 # Git
@@ -93,23 +93,6 @@ zstyle ':prezto:module:git:status:ignore' submodules 'dirty'
 zstyle ':prezto:module:prompt' theme 'michaelpj'
 
 #
-# Ruby
-#
-
-# Auto switch the Ruby version on directory change.
-# zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
-
-#
-# Screen
-#
-
-# Auto start a session when Zsh is launched in a local terminal.
-# zstyle ':prezto:module:screen:auto-start' local 'yes'
-
-# Auto start a session when Zsh is launched in a SSH connection.
-# zstyle ':prezto:module:screen:auto-start' remote 'yes'
-
-#
 # SSH
 #
 
@@ -122,13 +105,14 @@ zstyle ':prezto:module:prompt' theme 'michaelpj'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
-# zstyle ':prezto:module:syntax-highlighting' highlighters \
-#   'main' \
-#   'brackets' \
-#   'pattern' \
-#   'cursor' \
-#   'root'
-#
+ zstyle ':prezto:module:syntax-highlighting' highlighters \
+   'main' \
+   'brackets' \
+   'pattern' \
+   'line' \
+   'cursor' \
+   'root'
+
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
 #   'builtin' 'bg=blue' \
