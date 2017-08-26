@@ -32,12 +32,10 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'fasd' \
   'git' \
   'syntax-highlighting' \
   'history-substring-search' \
-  'autosuggestions' \
-  'prompt' 
+  'prompt'
 
 #
 # Editor
