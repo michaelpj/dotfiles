@@ -1,12 +1,18 @@
 [user]
 	name = Michael Peyton Jones
-  email = michaelpj@gmail.com
-[diff]
-	algorithm = histogram
-[color]
-	ui = true
+  email = me@michaelpj.com
 [core]
 	editor = vim
+[color]
+	ui = true
+[diff]
+	algorithm = histogram
+[merge]
+  conflictstyle = diff3
+[push]
+	default = simple
+[rerere]
+	enabled = true
 [alias]
   nb = checkout -b
   nbu = !"f() { git checkout -b $1 && git push -u origin $1; }; f"
@@ -16,6 +22,7 @@
   ci = commit -v
   b = branch -a
   s = status -sb
+  su = submodule update --init --recursive
   lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' 
   lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
   lg = !"git lg1"
@@ -23,14 +30,10 @@
   branch-purge = !"git branch --merged | grep -v 'master' | grep -v '*' | while read branch; do git del-lr $branch; done"
   del-lr = !"f() { git branch -d $1 && git push origin --delete $1; }; f"
   del-lrf = !"f() { git branch -D $1 && git push origin --delete $1; }; f"
-  branch-by-date = for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' 
+  branch-by-date = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)' 
   fix = !"f() { git commit --fixup=${1:-HEAD}; }; f"
   tidy = rebase --autosquash -i
-  sb = !"git ca $(git branch | cut -c 3- | hs)"
+  sb = !"git ca $(git branch-by-date | tac | hs | cut -f2 -d' ')"
   #where-merged = !"bash -c 'f() {  git rev-list $0..HEAD --ancestry-path | grep -f <(git rev-list $0..HEAD --first-parent) | tail -1; }; f'"
   conflicts = diff --name-only --diff-filter=U
   rebase-onto = !"f() { git rebase --onto $1 $(git merge-base HEAD $1); }; f"
-[push]
-	default = simple
-[rerere]
-	enabled = true
