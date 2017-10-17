@@ -1,6 +1,5 @@
 autoload -U colors && colors
 
-fpath=("${ZDOTDIR:-$HOME}/zfunctions" $fpath)
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then

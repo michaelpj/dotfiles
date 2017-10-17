@@ -63,3 +63,4 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 #
 
 if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then . ${HOME}/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+fpath+="${HOME}/.nix-profile/share/zsh/site-functions"
