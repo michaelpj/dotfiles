@@ -10,12 +10,14 @@ set -o vi
 
 setopt CLOBBER
 
+# Report time for commands longer than 20s
+REPORTTIME=20
+
+# Aliases
+
 alias tmux='tmux -2'
 alias em='emacsclient -nw --alternate-editor=""'
 alias emw='emacsclient --alternate-editor=""'
-
-# Report time for commands longer than 20s
-REPORTTIME=20
 
 # fasd aliases
 alias a='fasd -a'        # any
@@ -27,6 +29,15 @@ alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 # fuzzy select pid
 alias pid="ps axww -o pid,user,%cpu,%mem,start,time,command | hs | sed 's/^ *//' | cut -f1 -d' '"
 
+# nix aliases
+alias ns='nix-shell'
+alias ni='nix-instantiate'
+alias nb='nix-build'
+alias nr='nix-repl'
+alias nixpkgs='nix-build --no-out-link "<nixpkgs>" -A'
+
+alias vf="vim $(ls | hs)"
+
 selectah() {
   OUTPUT=$(eval "$1" | hs --search "$3" | tr '\n' ' ') 
   if [ -n "$OUTPUT" ]
@@ -37,4 +48,5 @@ selectah() {
   fi
 }
 
+# local customization
 [[ -f "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${ZDOTDIR:-$HOME}/.zshrc.local"
