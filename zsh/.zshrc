@@ -36,7 +36,7 @@ alias nb='nix-build'
 alias nr='nix-repl'
 alias nixpkgs='nix-build --no-out-link "<nixpkgs>" -A'
 
-alias vf="vim $(ls | hs)"
+alias vf="vim \$(ls | hs)"
 
 selectah() {
   OUTPUT=$(eval "$1" | hs --search "$3" | tr '\n' ' ') 
