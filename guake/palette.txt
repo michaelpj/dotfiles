@@ -1,6 +1,0 @@
- style = DejaVu Sans Mono 11
- palette = #000000000000:#e5e522222222:#a6a6e3e32d2d:#fcfc95951e1e:#c4c48d8dffff:#fafa25257373:#6767d9d9f0f0:#f2f2f2f2f2f2:#555557575353:#efef29292929:#8cfbece22f41:#fcfce9e94f4f:#ad177b7fe24a:#cd2516195921:#3434e2e2e2e2:#e84be84be7c2
- color = #ffffffffffff
- style = DejaVu Sans Mono 11
- palette = #000000000000:#dc2c17701770:#7b09b0f21018:#fcfc95951e1e:#c4c48d8dffff:#fafa25257373:#6767d9d9f0f0:#f2f2f2f2f2f2:#555557575353:#c72f17c817c8:#a6a6e3e32d2d:#fcfce9e94f4f:#ad177b7fe24a:#b8a913b4504e:#24d1ba26ba26:#e84be84be7c2
- color = #ffffffffffff
