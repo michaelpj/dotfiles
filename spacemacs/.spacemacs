@@ -52,8 +52,7 @@ values."
      python
      html
      yaml
-     (haskell :variables
-              haskell-completion-backend 'intero)
+     haskell
      idris
      )
    ;; List of additional packages that will be installed without being
@@ -109,7 +108,7 @@ values."
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
-   dotspacemacs-verbose-loading nil
+   dotspacemacs-verbose-loading t
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
    ;; banner, `random' chooses a random text banner in `core/banners'
@@ -274,7 +273,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server t
+   dotspacemacs-persistent-server nil
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -298,6 +297,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  ;; see https://github.com/syl20bnr/spacemacs/pull/5024#issuecomment-183136832
+  (setq-default exec-path-from-shell-variables '("GOPATH"))
   )
 
 (defun dotspacemacs/user-config ()
@@ -307,6 +308,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (global-set-key (kbd "C-SPC") 'company-complete-common)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -316,12 +318,13 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol t)
  '(package-selected-packages
    (quote
-    (company-quickhelp xterm-color toml-mode shell-pop racer org-projectile org-present org org-pomodoro alert log4e gntp org-download multi-term markdown-mode htmlize gnuplot gitignore-mode fringe-helper git-gutter+ git-gutter flyspell-correct flycheck-rust seq pos-tip flycheck magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help nixos-options company cargo rust-mode yasnippet auctex auto-complete exec-path-from-shell ws-butler wolfram-mode window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org thrift stan-mode spacemacs-theme spaceline smeargle scad-mode restart-emacs rainbow-delimiters quelpa qml-mode popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file noflet nix-mode neotree move-text monokai-theme mmm-mode matlab-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint julia-mode intero info+ indent-guide ido-vertical-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-nixos-options helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ensime elisp-slime-nav dumb-jump diff-hl define-word company-statistics company-nixos-options company-cabal company-auctex column-enforce-mode cmm-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (org-category-capture hydra dash-functional parent-mode projectile request pkg-info epl flx smartparens iedit anzu evil goto-chg undo-tree highlight diminish bind-map bind-key packed f dash s helm avy helm-core async popup org-ref pdf-tools key-chord ivy tablist helm-bibtex parsebib biblio biblio-core auctex-latexmk powerline spinner yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic sass-mode company-web web-mode tagedit slim-mode scss-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode web-completion-data winum fuzzy yaml-mode flycheck-haskell company-ghci company-ghc ghc haskell-mode idris-mode prop-menu company-quickhelp xterm-color toml-mode shell-pop racer org-projectile org-present org org-pomodoro alert log4e gntp org-download multi-term markdown-mode htmlize gnuplot gitignore-mode fringe-helper git-gutter+ git-gutter flyspell-correct flycheck-rust seq pos-tip flycheck magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help nixos-options company cargo rust-mode yasnippet auctex auto-complete exec-path-from-shell ws-butler wolfram-mode window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org thrift stan-mode spacemacs-theme spaceline smeargle scad-mode restart-emacs rainbow-delimiters quelpa qml-mode popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file noflet nix-mode neotree move-text monokai-theme mmm-mode matlab-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint julia-mode intero info+ indent-guide ido-vertical-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-nixos-options helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ensime elisp-slime-nav dumb-jump diff-hl define-word company-statistics company-nixos-options company-cabal company-auctex column-enforce-mode cmm-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))

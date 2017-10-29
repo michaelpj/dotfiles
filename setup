@@ -1,2 +1,15 @@
 #! /bin/sh
-ansible-playbook setup.yml -i hosts -K
+
+cd ~
+
+ln -s "dotfiles/zsh/.zshenv" .zshenv
+ln -s "dotfiles/vim" .vim
+ln -s "dotfiles/tmux/.tmux.conf" .tmux.conf
+
+cd .config
+
+ln -s "../dotfiles/zsh" zsh
+ln -s "../dotfiles/git" git
+ln -s "../dotfiles/spacemacs" spacemacs
+
+ln -s
