@@ -5,6 +5,7 @@ cd ~
 ln -s "dotfiles/zsh/.zshenv" .zshenv
 ln -s "dotfiles/vim" .vim
 ln -s "dotfiles/tmux/.tmux.conf" .tmux.conf
+ln -s "dotfiles/fasd/.fasdrc" .fasdrc
 
 cd .config
 
