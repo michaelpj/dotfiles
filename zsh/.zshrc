@@ -38,7 +38,7 @@ alias nixpkgs='nix-build --no-out-link "<nixpkgs>" -A'
 
 alias vf="vim \$(ls | hs)"
 
-selectah() {
+fuzzySelectEval() {
   OUTPUT=$(eval "$1" | hs --search "$3" | tr '\n' ' ') 
   if [ -n "$OUTPUT" ]
   then

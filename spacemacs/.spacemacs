@@ -50,6 +50,7 @@ values."
      emacs-lisp
      rust
      python
+     typescript
      html
      yaml
      haskell
