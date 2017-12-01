@@ -3,25 +3,29 @@
 # Load dependencies.
 pmodload 'helper'
 
-function prompt_michaelpj_git_info {
-  # We can safely split on ':' because it isn't allowed in ref names.
-  IFS=':' read _git_target _git_post_target <<<"$3"
+function prompt_michaelpj_async_callback {
+  case $1 in
+    prompt_michaelpj_async_git)
+      # We can safely split on ':' because it isn't allowed in ref names.
+      IFS=':' read _git_target _git_post_target <<<"$3"
 
-  # The target actually contains 3 space separated possibilities, so we need to
-  # make sure we grab the first one.
-  _git_target=$(coalesce ${(@)${(z)_git_target}})
+      # The target actually contains 3 space separated possibilities, so we need to
+      # make sure we grab the first one.
+      _git_target=$(coalesce ${(@)${(z)_git_target}})
 
-  if [[ -z "$_git_target" ]]; then
-    # No git target detected, flush the git fragment and redisplay the prompt.
-    if [[ -n "$_prompt_michaelpj_git" ]]; then
-      _prompt_michaelpj_git=''
-      zle && zle reset-prompt
-    fi
-  else
-    # Git target detected, update the git fragment and redisplay the prompt.
-    _prompt_michaelpj_git="${_git_target} | ${_git_post_target}"
-    zle && zle reset-prompt
-  fi
+      if [[ -z "$_git_target" ]]; then
+        # No git target detected, flush the git fragment and redisplay the prompt.
+        if [[ -n "$_prompt_michaelpj_git" ]]; then
+          _prompt_michaelpj_git=''
+          zle && zle reset-prompt
+        fi
+      else
+        # Git target detected, update the git fragment and redisplay the prompt.
+        _prompt_michaelpj_git="${_git_target} | ${_git_post_target}"
+        zle && zle reset-prompt
+      fi
+      ;;
+  esac
 }
 
 function prompt_michaelpj_async_git {
@@ -32,14 +36,28 @@ function prompt_michaelpj_async_git {
   fi
 }
 
+function prompt_michaelpj_async_tasks {
+  # Initialize async worker. This needs to be done here and not in
+  # prompt_sorin_setup so the git formatting can be overridden by other prompts.
+  if (( !${prompt_prezto_async_init:-0} )); then
+    async_start_worker prompt_michaelpj -n
+    async_register_callback prompt_michaelpj prompt_michaelpj_async_callback
+    typeset -g prompt_prezto_async_init=1
+  fi
+
+  # Kill the old process of slow commands if it is still running.
+  async_flush_jobs prompt_michaelpj
+
+  # Compute slow commands in the background.
+  async_job prompt_michaelpj prompt_michaelpj_async_git "$PWD"
+}
+
 function prompt_michaelpj_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
   _prompt_michaelpj_pwd=$(prompt-pwd)
 
-  # Kill the old process of slow commands if it is still running.
-  async_flush_jobs async_michaelpj_git
 
   # Handle updating git data. We also clear the git prompt data if we're in a
   # different git root now.
@@ -51,14 +69,13 @@ function prompt_michaelpj_precmd {
     fi
   fi
   
-  # Compute slow commands in the background.
-  async_job async_michaelpj_git prompt_michaelpj_async_git "$PWD"
+  prompt_michaelpj_async_tasks
 }
 
 function prompt_michaelpj_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
-  prompt_opts=(cr percent subst)
+  prompt_opts=(cr percent sp subst)
   _prompt_michaelpj_precmd_async_pid=0
   _prompt_michaelpj_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/michaelpj-prompt-async-XXXXXXXXXX")
 
@@ -94,8 +111,6 @@ function prompt_michaelpj_setup {
     'status' '%b %p %c:%C%D%i%I%u'
 
   # Get the async worker set up
-  async_start_worker async_michaelpj_git -n
-  async_register_callback async_michaelpj_git prompt_michaelpj_git_info
   _michaelpj_cur_git_root=''
 
   _prompt_michaelpj_git=''
