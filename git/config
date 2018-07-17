@@ -1,10 +1,13 @@
 [user]
   name = Michael Peyton Jones
   email = me@michaelpj.com
+  signingKey = 86A43C24A728F66D
 [includeIf "gitdir:iohk/"]
   path = config-iohk
 [core]
   editor = vim
+[commit]
+  gpgsign = true
 [diff]
   algorithm = histogram
   mnemonicPrefix = true
