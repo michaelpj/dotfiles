@@ -1,6 +1,8 @@
 [user]
   name = Michael Peyton Jones
   email = me@michaelpj.com
+[includeIf "gitdir:iohk/"]
+  path = config-iohk
 [core]
   editor = vim
 [diff]
