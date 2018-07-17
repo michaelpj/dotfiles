@@ -12,5 +12,3 @@ cd .config
 ln -s "../dotfiles/zsh" zsh
 ln -s "../dotfiles/git" git
 ln -s "../dotfiles/spacemacs" spacemacs
-
-ln -s
