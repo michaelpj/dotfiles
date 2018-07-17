@@ -1,27 +1,31 @@
 [user]
-	name = Michael Peyton Jones
+  name = Michael Peyton Jones
   email = me@michaelpj.com
 [core]
-	editor = vim
-[color]
-	ui = true
+  editor = vim
 [diff]
-	algorithm = histogram
+  algorithm = histogram
+  mnemonicPrefix = true
 [merge]
   conflictstyle = diff3
-[push]
-	default = simple
 [rerere]
-	enabled = true
+  enabled = true
+[push]
+  default = simple
+[status]
+  short = true
+  branch = true
+  submoduleSummary = true
 [alias]
   nb = checkout -b
   nbu = !"f() { git checkout -b $1 && git push -u origin $1; }; f"
   co = checkout
   ca = !"f() { git checkout $1 && git submodule update --init --recursive; }; f"
+  sb = !"git ca $(git branch-by-date | tac | hs | cut -f2 -d' ')"
   cm = commit -m
   ci = commit -v
   b = branch -a
-  s = status -sb
+  s = status 
   su = submodule update --init --recursive
   lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' 
   lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
@@ -33,7 +37,6 @@
   branch-by-date = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)' 
   fix = !"f() { git commit --fixup=${1:-HEAD}; }; f"
   tidy = rebase --autosquash -i
-  sb = !"git ca $(git branch-by-date | tac | hs | cut -f2 -d' ')"
   where-merged = !"bash -c 'f() {  git rev-list $0..HEAD --ancestry-path | grep -f <(git rev-list $0..HEAD --first-parent) | tail -1; }; f'"
   conflicts = diff --name-only --diff-filter=U
   rebase-onto = !"f() { git rebase --onto $1 $(git merge-base HEAD $1); }; f"
