@@ -45,3 +45,4 @@
   where-merged = !"bash -c 'f() {  git rev-list $0..HEAD --ancestry-path | grep -f <(git rev-list $0..HEAD --first-parent) | tail -1; }; f'"
   conflicts = diff --name-only --diff-filter=U
   rebase-onto = !"f() { git rebase --onto $1 $(git merge-base HEAD $1); }; f"
+  pr = !"f() { git fetch upstream pull/$1/merge:pr/$1; git ca pr/$1; }; f"
