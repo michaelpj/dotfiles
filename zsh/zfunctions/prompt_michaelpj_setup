@@ -76,15 +76,15 @@ function prompt_michaelpj_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent sp subst)
-  _prompt_michaelpj_precmd_async_pid=0
-  _prompt_michaelpj_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/michaelpj-prompt-async-XXXXXXXXXX")
+  #_prompt_michaelpj_precmd_async_pid=0
+  #_prompt_michaelpj_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/michaelpj-prompt-async-XXXXXXXXXX")
 
   # Load required functions.
   autoload -Uz add-zsh-hook
 
   # Add hook for calling git-info before each command.
-  add-zsh-hook precmd prompt_michaelpj_precmd
-  autoload -Uz async && async
+  #add-zsh-hook precmd prompt_michaelpj_precmd
+  #autoload -Uz async && async
 
   # Set editor-info parameters.  
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
@@ -92,23 +92,23 @@ function prompt_michaelpj_setup {
   zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%(?.%F{yellow}.%F{red})❮%f%b'
 
   # Set git-info parameters.
-  zstyle ':prezto:module:git:info' verbose 'yes'
+  #zstyle ':prezto:module:git:info' verbose 'yes'
 
-  zstyle ':prezto:module:git:info:action' format ': %B%F{yellow}%s%f%b'
-  zstyle ':prezto:module:git:info:ahead' format ' %B%F{yellow}ahead%f%b'
-  zstyle ':prezto:module:git:info:behind' format ' %B%F{yellow}behind%f%b'
-  zstyle ':prezto:module:git:info:branch' format '%F{green}%b%f'
-  zstyle ':prezto:module:git:info:commit' format '%F{green}%.7c%f'
-  zstyle ':prezto:module:git:info:position' format '%F{red}%p%f'
+  #zstyle ':prezto:module:git:info:action' format ': %B%F{yellow}%s%f%b'
+  #zstyle ':prezto:module:git:info:ahead' format ' %B%F{yellow}ahead%f%b'
+  #zstyle ':prezto:module:git:info:behind' format ' %B%F{yellow}behind%f%b'
+  #zstyle ':prezto:module:git:info:branch' format '%F{green}%b%f'
+  #zstyle ':prezto:module:git:info:commit' format '%F{green}%.7c%f'
+  #zstyle ':prezto:module:git:info:position' format '%F{red}%p%f'
 
-  zstyle ':prezto:module:git:info:indexed' format ' %F{green}M%f'
-  zstyle ':prezto:module:git:info:unindexed' format ' %F{red}M%f'
-  zstyle ':prezto:module:git:info:untracked' format ' %F{red}??%f'
-  zstyle ':prezto:module:git:info:clean' format '%B%F{green}clean%f%b'
-  zstyle ':prezto:module:git:info:dirty' format '%B%F{red}dirty%f%b:'
+  #zstyle ':prezto:module:git:info:indexed' format ' %F{green}M%f'
+  #zstyle ':prezto:module:git:info:unindexed' format ' %F{red}M%f'
+  #zstyle ':prezto:module:git:info:untracked' format ' %F{red}??%f'
+  #zstyle ':prezto:module:git:info:clean' format '%B%F{green}clean%f%b'
+  #zstyle ':prezto:module:git:info:dirty' format '%B%F{red}dirty%f%b:'
 
-  zstyle ':prezto:module:git:info:keys' format \
-    'status' '%b %p %c:%C%D%i%I%u'
+  #zstyle ':prezto:module:git:info:keys' format \
+  #  'status' '%b %p %c:%C%D%i%I%u'
 
   # Get the async worker set up
   _michaelpj_cur_git_root=''
