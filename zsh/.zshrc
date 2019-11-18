@@ -31,6 +31,7 @@ alias pid="ps axww -o pid,user,%cpu,%mem,start,time,command | hs | sed 's/^ *//'
 
 # nix aliases
 alias ns='nix-shell'
+alias nb='nix build -f default.nix -L'
 alias nixpkgs='nix-build --no-out-link "<nixpkgs>" -A'
 
 alias vf="vim \$(ls | hs)"
