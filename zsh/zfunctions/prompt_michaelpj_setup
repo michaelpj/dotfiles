@@ -3,122 +3,32 @@
 # Load dependencies.
 pmodload 'helper'
 
-function prompt_michaelpj_async_callback {
-  case $1 in
-    prompt_michaelpj_async_git)
-      # We can safely split on ':' because it isn't allowed in ref names.
-      IFS=':' read _git_target _git_post_target <<<"$3"
-
-      # The target actually contains 3 space separated possibilities, so we need to
-      # make sure we grab the first one.
-      _git_target=$(coalesce ${(@)${(z)_git_target}})
-
-      if [[ -z "$_git_target" ]]; then
-        # No git target detected, flush the git fragment and redisplay the prompt.
-        if [[ -n "$_prompt_michaelpj_git" ]]; then
-          _prompt_michaelpj_git=''
-          zle && zle reset-prompt
-        fi
-      else
-        # Git target detected, update the git fragment and redisplay the prompt.
-        _prompt_michaelpj_git="${_git_target} | ${_git_post_target}"
-        zle && zle reset-prompt
-      fi
-      ;;
-  esac
-}
-
-function prompt_michaelpj_async_git {
-  cd -q "$1"
-  if (( $+functions[git-info] )); then
-    git-info
-    print ${git_info[status]}
-  fi
-}
-
-function prompt_michaelpj_async_tasks {
-  # Initialize async worker. This needs to be done here and not in
-  # prompt_sorin_setup so the git formatting can be overridden by other prompts.
-  if (( !${prompt_prezto_async_init:-0} )); then
-    async_start_worker prompt_michaelpj -n
-    async_register_callback prompt_michaelpj prompt_michaelpj_async_callback
-    typeset -g prompt_prezto_async_init=1
-  fi
-
-  # Kill the old process of slow commands if it is still running.
-  async_flush_jobs prompt_michaelpj
-
-  # Compute slow commands in the background.
-  async_job prompt_michaelpj prompt_michaelpj_async_git "$PWD"
-}
-
-function prompt_michaelpj_precmd {
-  setopt LOCAL_OPTIONS
-  unsetopt XTRACE KSH_ARRAYS
-
-  _prompt_michaelpj_pwd=$(prompt-pwd)
-
-
-  # Handle updating git data. We also clear the git prompt data if we're in a
-  # different git root now.
-  if (( $+functions[git-dir] )); then
-    local new_git_root="$(git-dir 2> /dev/null)"
-    if [[ $new_git_root != $_michaelpj_cur_git_root ]]; then
-      _prompt_michaelpj_git=''
-      _michaelpj_cur_git_root=$new_git_root
-    fi
-  fi
-  
-  prompt_michaelpj_async_tasks
+function direnv_info {
+  if [[ -v DIRENV_DIR ]]; then
+    direnv_status="%B%F{cyan}direnv%f%b:%B%F{green}$(basename ${DIRENV_DIR:1})%f%b"
+  else
+    direnv_status=""
+  fi  
 }
 
 function prompt_michaelpj_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent sp subst)
-  #_prompt_michaelpj_precmd_async_pid=0
-  #_prompt_michaelpj_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/michaelpj-prompt-async-XXXXXXXXXX")
 
   # Load required functions.
   autoload -Uz add-zsh-hook
 
-  # Add hook for calling git-info before each command.
-  #add-zsh-hook precmd prompt_michaelpj_precmd
-  #autoload -Uz async && async
+  add-zsh-hook precmd direnv_info
 
   # Set editor-info parameters.  
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
   zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%(?.%F{yellow}.%F{red})❯%f%b'
   zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%(?.%F{yellow}.%F{red})❮%f%b'
 
-  # Set git-info parameters.
-  #zstyle ':prezto:module:git:info' verbose 'yes'
-
-  #zstyle ':prezto:module:git:info:action' format ': %B%F{yellow}%s%f%b'
-  #zstyle ':prezto:module:git:info:ahead' format ' %B%F{yellow}ahead%f%b'
-  #zstyle ':prezto:module:git:info:behind' format ' %B%F{yellow}behind%f%b'
-  #zstyle ':prezto:module:git:info:branch' format '%F{green}%b%f'
-  #zstyle ':prezto:module:git:info:commit' format '%F{green}%.7c%f'
-  #zstyle ':prezto:module:git:info:position' format '%F{red}%p%f'
-
-  #zstyle ':prezto:module:git:info:indexed' format ' %F{green}M%f'
-  #zstyle ':prezto:module:git:info:unindexed' format ' %F{red}M%f'
-  #zstyle ':prezto:module:git:info:untracked' format ' %F{red}??%f'
-  #zstyle ':prezto:module:git:info:clean' format '%B%F{green}clean%f%b'
-  #zstyle ':prezto:module:git:info:dirty' format '%B%F{red}dirty%f%b:'
-
-  #zstyle ':prezto:module:git:info:keys' format \
-  #  'status' '%b %p %c:%C%D%i%I%u'
-
-  # Get the async worker set up
-  _michaelpj_cur_git_root=''
-
-  _prompt_michaelpj_git=''
-  _prompt_michaelpj_pwd=''
-
   # Define prompts.
   PROMPT='%F{magenta}%n%f@%F{yellow}%m%f:%B%F{green}%~%f%B%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT='${IN_NIX_SHELL:+"%B%F{6}NIX%f%b "}%f${_prompt_michaelpj_git}'
+  RPROMPT='${IN_NIX_SHELL:+"%B%F{cyan}nix%f%b "}%f${direnv_status}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
