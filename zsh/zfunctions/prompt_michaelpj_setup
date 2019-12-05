@@ -21,6 +21,8 @@ function prompt_michaelpj_setup {
 
   add-zsh-hook precmd direnv_info
 
+  zstyle ':prezto:module:prompt' managed 'yes'
+
   # Set editor-info parameters.  
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
   zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%(?.%F{yellow}.%F{red})❯%f%b'
