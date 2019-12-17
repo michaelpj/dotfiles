@@ -5,3 +5,4 @@ dil.vim
 ra.vim
 vim/bundle
 .netrwhist
+.spacemacs.env
