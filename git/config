@@ -34,7 +34,7 @@
   s = status 
   su = submodule update --init --recursive
   amend = commit --amend
-  branch-purge = !"git branch --merged | grep -v 'master' | grep -v '*' | while read branch; do git del-lr $branch; done"
+  branch-purge = !"git branch --merged | grep -v 'master' | grep -v '*' | while read branch; do git del-lrf $branch; done"
   del-lr = !"f() { git branch -d $1 && git push origin --delete $1; }; f"
   del-lrf = !"f() { git branch -D $1 && git push origin --delete $1; }; f"
   branch-by-date = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)' 
@@ -44,3 +44,5 @@
   rebase-onto = !"f() { git rebase --onto $1 $(git merge-base HEAD $1); }; f"
   pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
   pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+[pull]
+	ff = only
