@@ -6,6 +6,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Makes completion slow, see https://github.com/sorin-ionescu/prezto/issues/1876
+unsetopt PATH_DIRS
+
 set -o vi
 
 setopt CLOBBER
@@ -33,6 +36,8 @@ alias pid="ps axww -o pid,user,%cpu,%mem,start,time,command | hs | sed 's/^ *//'
 alias ns='nix-shell'
 alias nb='nix build -f default.nix -L'
 alias nixpkgs='nix-build --no-out-link "<nixpkgs>" -A'
+REMOTE_BUILDERS="ssh://eu.nixbuild.net x86_64-linux - 100 1 big-parallel,benchmark"
+alias nbr='nix build -f default.nix -L --builders "$REMOTE_BUILDERS"'
 
 alias vf="vim \$(ls | hs)"
 
