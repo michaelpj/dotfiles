@@ -1,54 +1,19 @@
-" VUNDLE
-filetype off 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-
-" PLUGINS
-
-Plugin 'scrooloose/nerdtree'
 " toggle NERDtree
 nmap <Leader>n :NERDTreeToggle<CR>
 
 " NERDtree directory stuff
 let NERDTreeChDirMode=2
 
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-let g:syntastic_mode_map = { 'passive_filetypes':['java'] }
-
-Plugin 'tpope/vim-fugitive'
 nmap <Leader>gs :Gstatus<CR>
 
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-
-Plugin 'plasticboy/vim-markdown'
-
-Plugin 'Lokaltog/vim-powerline'
 " apparently I need this to get powerline to work
 set laststatus=2
-
-Plugin 'kien/ctrlp.vim'
-" binding for ctrlp buffer search
-nmap <Leader>b :CtrlPBuffer<CR>
 
 " highlight basic types in Haskell
 let g:hs_highlight_types=1
 
 " highlight booleans in Haskell
 let g:hs_highlight_boolean=1
-
-Plugin 'vimwiki'
-
-let g:vimwiki_list=[{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md' }]
-
-call vundle#end()
-
-" Zeal
-
-nnoremap gz :execute "!zeal --query " . &ft . ":" . expand("<cword>") <CR><CR>
 
 " BASICS
 

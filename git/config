@@ -6,16 +6,24 @@
   path = config-iohk
 [core]
   editor = vim
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
 [commit]
   gpgsign = true
+[interactive]
+  diffFilter = delta --color-only
 [diff]
   algorithm = histogram
   mnemonicPrefix = true
+  colorMoved = default
+[delta]
+  navigate = true
+  line-numbers = true
+  side-by-side = true
+  hyperlinks = true
 [merge]
   conflictstyle = diff3
 [rerere]
-  enabled = true
+  enabled = false
 [push]
   default = simple
 [status]
